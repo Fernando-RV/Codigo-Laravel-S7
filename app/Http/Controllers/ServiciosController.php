@@ -23,7 +23,9 @@ class ServiciosController extends Controller
 
     
     public function create(){
-        return view('create');
+        return view('create',[
+            'servicio' => new Servicio
+        ]);
     }
 
     public function store(CreateServicioRequest $request){
@@ -52,4 +54,12 @@ class ServiciosController extends Controller
         
 	return redirect()->route('servicios.show',$servicio);
     }
+
+
+    public function destroy(Servicio $servicio){
+        $servicio->delete();
+        
+	    return redirect()->route('servicios.index');
+    }
+
 }
